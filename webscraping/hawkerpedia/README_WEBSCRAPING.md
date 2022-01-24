@@ -10,6 +10,6 @@
 - Run 'python hawkerpedia_webscraper.py' to generate output (may need to route path to access output etc.)
 
 ## Output
-- Split by Hawker Centre (expect 143 Files *2 (1 CSV and 1 Json))
+- Split by Hawker Centre (expect 139 Files *2 (1 CSV and 1 Json))
 - json/output - contains json files of hawker stalls data
 - output- contains csv files of hawker stalls data
