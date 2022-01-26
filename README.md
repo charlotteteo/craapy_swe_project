@@ -1,6 +1,6 @@
 ## craapy_swe_project
 ### Data Extraction
-#### Component
+#### Components
 - Hawker Centres' Closure
 - Hawker Stalls
 - Carpark Availability
