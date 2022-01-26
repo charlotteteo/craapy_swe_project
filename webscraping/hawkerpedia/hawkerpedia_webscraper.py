@@ -5,7 +5,6 @@ import pandas as pd
 from bs4 import BeautifulSoup
 
 
-#print(content_list[0].split("https://www.hawkerpedia.com.sg/en/hawker-centre/")[1])
 from urllib.request import urlopen
 import regex as re
 html = urlopen("https://www.hawkerpedia.com.sg/en/directories")
@@ -13,8 +12,6 @@ text = html.read()
 plaintext = text.decode('utf8')
 links = re.findall("href=[\"\'](/en/hawker-centre/)(.*?)[\"\']", plaintext)
 # print(links)
-
-
 #generate links
 for x in range(len(links)):
     # tail+=links[x][1]
