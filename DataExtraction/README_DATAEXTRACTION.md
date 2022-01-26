@@ -13,3 +13,9 @@
 - Split by Hawker Centre (expect 139 Files *2 (1 CSV and 1 Json))
 - json/output - contains json files of hawker stalls data
 - output- contains csv files of hawker stalls data
+
+
+## Hawker Closure
+### Using API Call by Requests 
+## Output
+- 100 hawker centres and their corresponding start and end closing dates of cleaning 
