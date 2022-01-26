@@ -1,4 +1,4 @@
-## HAWKERPEDIA WEBSCRAPING
+## Hawker Stalls from Hawkerpedia
 ### Using Beautiful Soup and Regex to extract information on each hawker stall 
 - Some hawker centres would have either one row/empty as it does not have any information other than the store name - data does not match syntax
 - takes about 50-60seconds to generate all data files
