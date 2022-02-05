@@ -1,0 +1,51 @@
+@startuml
+
+skinparam Shadowing false
+actor       Staff       as Staff
+boundary    ReservationsInterface    as Foo
+control     ReservationSystem     as Foo1
+control capacityManager as Foo2
+control StorageManager as Foo3
+entity TimeTranslator as Foo4
+entity Reservations as Foo5
+
+Staff -> Foo: Input
+
+alt input=5
+    Foo-> Foo1: printAllReservations
+else input=6
+    Foo-> Foo1: registerTable
+    Foo1->Foo: getInput
+    Foo->Foo1: Input
+    alt input=1
+        Foo1->Foo1: removeReservation
+    else input=2
+        Foo1->Foo2: checkTableStatus
+        Foo2->Foo1: Return value
+        alt value =1
+            Foo1->Foo2: setTableStatus
+        else
+            return
+    else 
+        Foo1->Foo: getInput
+
+
+
+
+
+else input=7
+    Foo-> Foo1: deregisterTable
+    Foo1->Foo2: checkTableStatus
+    Foo2->Foo1: return status
+    alt status=1
+        Foo1->Foo2: unsetTableStatus
+
+
+
+else input=8
+    Foo-> Foo: Exit
+else 
+    Foo->Staff: getInput
+
+end
+@enduml
