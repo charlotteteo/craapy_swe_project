@@ -1,51 +1,54 @@
 @startuml
+'!include ../../plantuml-styles/plantuml-ae.iuml
 
 skinparam Shadowing false
-actor       Staff       as Staff
-boundary    ReservationsInterface    as Foo
-control     ReservationSystem     as Foo1
-control capacityManager as Foo2
-control StorageManager as Foo3
-entity TimeTranslator as Foo4
-entity Reservations as Foo5
 
-Staff -> Foo: Input
+skinparam ArrowFontStyle normal
+skinparam ArrowFontName Courier
+skinparam ArrowFontSize 10
 
-alt input=5
-    Foo-> Foo1: printAllReservations
-else input=6
-    Foo-> Foo1: registerTable
-    Foo1->Foo: getInput
-    Foo->Foo1: Input
-    alt input=1
-        Foo1->Foo1: removeReservation
-    else input=2
-        Foo1->Foo2: checkTableStatus
-        Foo2->Foo1: Return value
-        alt value =1
-            Foo1->Foo2: setTableStatus
-        else
-            return
-    else 
-        Foo1->Foo: getInput
+
+:User: as U       
 
 
 
+package application{
+U -- (Find Hawker Stalls)
+U -- (Request for Assistance)
+(Request for Assistance)<..(View FAQ):<<extends>>
+(Request for Assistance)<..(Craft Email):<<extends>>
+(Find Hawker Stalls)<.. (Apply Filters):<<extends>>
+(Find Hawker Stalls)..> (Search by Food Item): <<include>>
+(Find Hawker Stalls)..> (Search by Hawker Centre): <<include>>
+(Search by Hawker Centre)<..(Apply Filters): <<extends>>
+(Search by Food Item)<..(Apply Filters): <<extends>>
+(Search by Hawker Centre)..>(View List of Hawker Stalls):  <<include>>
+(Apply Filters)..> (View List of Hawker Stalls): <<include>>
+(Search by Food Item)..> (View List of Hawker Stalls): <<include>>
+(View List of Hawker Stalls) <.. (Select Specific Hawker Stall): <<extends>>
+(View List of Hawker Stalls) ..> (Select Specific Hawker Centre): <<extends>>
+(View List of Hawker Stalls)<..(View all options on map): <<extends>>
+(View all options on map)<.. (Select Specific Hawker Stall): <<extends>>
+U -- (View all Nearby Carparks)
+(View all Nearby Carparks) ..> (Carpark Availability): <<include>>
+U --(View all Hawker Centres on Map)
+(View all Hawker Centres on Map) ..> (Select Specific Hawker Centre): <<include>>
+' (Select Specific Hawker Centre)..> (Suggest Route to Destination):<<include>>
+(Select Specific Hawker Stall)<.. (Share Specific Hawker Stall Details): <<extends>>
+(Select Specific Hawker Stall)..> (Suggest Route to Destination):<<include>>
+(Suggest Route to Destination)..>(By Car):<<include>>
+(Suggest Route to Destination) ..> (By Walk):<<include>>
+(Suggest Route to Destination)..> (By Public Transport):<<include>>
+(By Car)..> (Show Available Carparks):<<include>>
+(Show Available Carparks)..> (Select Nearby Carpark): <<include>>
+(By Public Transport) ..> (View Route):<<include>>
+(Select Nearby Carpark)..> (View Route):<<include>>
+(By Walk)..> (View Route):<<include>>
 
 
-else input=7
-    Foo-> Foo1: deregisterTable
-    Foo1->Foo2: checkTableStatus
-    Foo2->Foo1: return status
-    alt status=1
-        Foo1->Foo2: unsetTableStatus
+}
 
 
 
-else input=8
-    Foo-> Foo: Exit
-else 
-    Foo->Staff: getInput
-
-end
+'!include ../../plantuml-styles/ae-copyright-footer.txt
 @enduml

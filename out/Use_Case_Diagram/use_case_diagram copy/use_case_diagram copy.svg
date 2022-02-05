@@ -1,0 +1,140 @@
+@startuml
+'!include ../../plantuml-styles/plantuml-ae.iuml
+left to right direction
+skinparam Shadowing false
+
+skinparam ArrowFontStyle normal
+skinparam ArrowFontName Courier
+skinparam ArrowFontSize 10
+
+
+:User: as U       
+:GoogleMapsRoutingAPI: as GoogleMapsRoutingAPI
+:CarparkAvailabilityAPI and CarparkCodeAPI: as CarparkAvailabilityAPIandCarparkCodeAPI
+:Hawker Centre Stall and Closure Webscraping: as HawkerCentreStallWebscrapingHawkerCentresClosureWebscraping
+
+
+package application{
+U - - (Find Hawker Stalls)
+U - - (Request for Assistance)
+(Request for Assistance)<..(View FAQ):<<extends>>
+(Request for Assistance)<..(Craft Email):<<extends>>
+(Find Hawker Stalls)<.. (Apply Filters):<<extends>>
+(Find Hawker Stalls)..> (Search by Food Item): <<include>>
+(Find Hawker Stalls)..> (Search by Hawker Centre): <<include>>
+(Search by Hawker Centre)<..(Apply Filters): <<extends>>
+(Search by Food Item)<..(Apply Filters): <<extends>>
+(Search by Hawker Centre)..>(View List of Hawker Stalls):  <<include>>
+(Apply Filters)..> (View List of Hawker Stalls): <<include>>
+(Search by Food Item)..> (View List of Hawker Stalls): <<include>>
+(View List of Hawker Stalls) <.. (Select Specific Hawker Stall): <<extends>>
+(View List of Hawker Stalls) ..> (Select Specific Hawker Centre): <<extends>>
+(View List of Hawker Stalls)<..(View all options on map): <<extends>>
+(View all options on map)<.. (Select Specific Hawker Stall): <<extends>>
+U - - (View all Nearby Carparks)
+(View all Nearby Carparks) ..> (Carpark Availability): <<include>>
+U - -(View all Hawker Centres on Map)
+(View all Hawker Centres on Map) ..> (Select Specific Hawker Centre): <<include>>
+' (Select Specific Hawker Centre)..> (Suggest Route to Destination):<<include>>
+(Select Specific Hawker Stall)<.. (Share Specific Hawker Stall Details): <<extends>>
+(Select Specific Hawker Stall)..> (Suggest Route to Destination):<<include>>
+(Suggest Route to Destination)..>(By Car):<<include>>
+(Suggest Route to Destination) ..> (By Walk):<<include>>
+(Suggest Route to Destination)..> (By Public Transport):<<include>>
+(By Car)..> (Show Available Carparks):<<include>>
+(Show Available Carparks)..> (Select Nearby Carpark): <<include>>
+(By Public Transport) ..> (View Route):<<include>>
+(Select Nearby Carpark)..> (View Route):<<include>>
+(By Walk)..> (View Route):<<include>>
+HawkerStallsAPI- -> (Retrieve Information on Hawker Stalls)
+GoogleMapsRoutingAPI - - (View all options on map)
+GoogleMapsRoutingAPI - - (View all Hawker Centres on Map)
+GoogleMapsRoutingAPI - - (View Route)
+GoogleMapsRoutingAPI - - (View all Nearby Carparks)
+CarparkAvailabilityAPIandCarparkCodeAPI- - (Carpark Availability)
+CarparkAvailabilityAPIandCarparkCodeAPI- - (Show Available Carpark)
+together{
+HawkerCentreStallWebscrapingHawkerCentresClosureWebscraping- - (Find Hawker Stalls)
+HawkerCentreStallWebscrapingHawkerCentresClosureWebscraping- - (View List of Hawker Stalls)
+HawkerCentreStallWebscrapingHawkerCentresClosureWebscraping- - (Share Specific Hawker Stall Details)
+HawkerCentreStallWebscrapingHawkerCentresClosureWebscraping- - (Select Specific Hawker Centre)
+}
+}
+
+
+
+'!include ../../plantuml-styles/ae-copyright-footer.txt
+@enduml
+
+@startuml
+skinparam Shadowing false
+
+skinparam ArrowFontStyle normal
+skinparam ArrowFontName Courier
+skinparam ArrowFontSize 10
+
+
+:User: as U       
+:GoogleMapsRoutingAPI: as GoogleMapsRoutingAPI
+:CarparkAvailabilityAPI and CarparkCodeAPI: as CarparkAvailabilityAPIandCarparkCodeAPI
+:Hawker Centre Stall and Closure Webscraping: as HawkerCentreStallWebscrapingHawkerCentresClosureWebscraping
+
+
+package application{
+U - - (Find Hawker Stalls)
+U - - (Request for Assistance)
+(Request for Assistance)<..(View FAQ):<<extends>>
+(Request for Assistance)<..(Craft Email):<<extends>>
+(Find Hawker Stalls)<.. (Apply Filters):<<extends>>
+(Find Hawker Stalls)..> (Search by Food Item): <<include>>
+(Find Hawker Stalls)..> (Search by Hawker Centre): <<include>>
+(Search by Hawker Centre)<..(Apply Filters): <<extends>>
+(Search by Food Item)<..(Apply Filters): <<extends>>
+(Search by Hawker Centre)..>(View List of Hawker Stalls):  <<include>>
+(Apply Filters)..> (View List of Hawker Stalls): <<include>>
+(Search by Food Item)..> (View List of Hawker Stalls): <<include>>
+(View List of Hawker Stalls) <.. (Select Specific Hawker Stall): <<extends>>
+(View List of Hawker Stalls) ..> (Select Specific Hawker Centre): <<extends>>
+(View List of Hawker Stalls)<..(View all options on map): <<extends>>
+(View all options on map)<.. (Select Specific Hawker Stall): <<extends>>
+U - - (View all Nearby Carparks)
+(View all Nearby Carparks) ..> (Carpark Availability): <<include>>
+U - -(View all Hawker Centres on Map)
+(View all Hawker Centres on Map) ..> (Select Specific Hawker Centre): <<include>>
+(Select Specific Hawker Stall)<.. (Share Specific Hawker Stall Details): <<extends>>
+(Select Specific Hawker Stall)..> (Suggest Route to Destination):<<include>>
+(Suggest Route to Destination)..>(By Car):<<include>>
+(Suggest Route to Destination) ..> (By Walk):<<include>>
+(Suggest Route to Destination)..> (By Public Transport):<<include>>
+(By Car)..> (Show Available Carparks):<<include>>
+(Show Available Carparks)..> (Select Nearby Carpark): <<include>>
+(By Public Transport) ..> (View Route):<<include>>
+(Select Nearby Carpark)..> (View Route):<<include>>
+(By Walk)..> (View Route):<<include>>
+HawkerStallsAPI- -> (Retrieve Information on Hawker Stalls)
+GoogleMapsRoutingAPI - - (View all options on map)
+GoogleMapsRoutingAPI - - (View all Hawker Centres on Map)
+GoogleMapsRoutingAPI - - (View Route)
+GoogleMapsRoutingAPI - - (View all Nearby Carparks)
+CarparkAvailabilityAPIandCarparkCodeAPI- - (Carpark Availability)
+CarparkAvailabilityAPIandCarparkCodeAPI- - (Show Available Carpark)
+together{
+HawkerCentreStallWebscrapingHawkerCentresClosureWebscraping- - (Find Hawker Stalls)
+HawkerCentreStallWebscrapingHawkerCentresClosureWebscraping- - (View List of Hawker Stalls)
+HawkerCentreStallWebscrapingHawkerCentresClosureWebscraping- - (Share Specific Hawker Stall Details)
+HawkerCentreStallWebscrapingHawkerCentresClosureWebscraping- - (Select Specific Hawker Centre)
+}
+}
+
+
+
+@enduml
+
+PlantUML version 1.2022.0(Wed Jan 12 00:16:42 SGT 2022)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: SG
+--></g></svg>
